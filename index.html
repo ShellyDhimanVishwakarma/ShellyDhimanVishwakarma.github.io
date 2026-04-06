@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+            rel="stylesheet" />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            "bg-primary": "#09090b",
+                            "bg-secondary": "#141416",
+                            "bg-tertiary": "#1c1c1f",
+                            "bg-card": "#0f0f11",
+                            "text-primary": "#fafafa",
+                            "text-secondary": "#a1a1aa",
+                            "text-muted": "#71717a",
+                            accent: "#3b82f6",
+                            "accent-light": "#60a5fa",
+                            "accent-pink": "#3b82f6",
+                            "accent-emerald": "#3b82f6",
+                            "border-custom": "#232326",
+                            "border-light": "#34343a",
+                        },
+                        fontFamily: {
+                            inter: ["Inter", "sans-serif"],
+                            fira: ["Fira Code", "monospace"],
+                        },
+                        boxShadow: {
+                            soft: "0 10px 30px rgba(0,0,0,.25)",
+                            glow: "0 20px 60px rgba(59,130,246,.25)",
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            .bg-grid {
+                background-image: radial-gradient(
+                    rgba(59, 130, 246, 0.08) 1px,
+                    transparent 1px
+                );
+                background-size: 44px 44px;
+            }
+            .gradient-text {
+                background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            }
+            .ring-gradient {
+                position: relative;
+            }
+            .ring-gradient::before {
+                content: "";
+                position: absolute;
+                inset: -1px;
+                border-radius: 1.5rem;
+                padding: 1px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(59, 130, 246, 0.55),
+                    rgba(29, 78, 216, 0.5)
+                );
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+            }
+            .fade-up {
+                opacity: 0;
+                transform: translateY(14px);
+                animation: fadeUp 0.8s ease forwards;
+            }
+            .fade-up.delay-1 {
+                animation-delay: 0.1s;
+            }
+            .fade-up.delay-2 {
+                animation-delay: 0.2s;
+            }
+            .fade-up.delay-3 {
+                animation-delay: 0.3s;
+            }
+            @keyframes fadeUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </head>
+
+    <body
+        class="font-inter bg-bg-primary text-text-primary leading-relaxed overflow-x-hidden">
+        <div class="fixed inset-0 bg-grid pointer-events-none -z-10"></div>
+
+        <header
+            class="fixed top-0 left-0 w-full z-50 bg-bg-primary/80 backdrop-blur border-b border-border-custom">
+            <div
+                class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+                <a href="#home" class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center font-extrabold text-sm shadow-glow">
+                        SD
+                    </div>
+                    <div class="leading-tight">
+                        <div class="font-semibold">Shelly Dhiman</div>
+                        <div class="text-xs text-text-muted">
+                            Web Designer/Frontend Developer
+                        </div>
+                    </div>
+                </a>
+
+                <nav
+                    class="hidden lg:flex items-center gap-8 text-sm text-text-secondary">
+                    <a class="hover:text-white transition" href="#about"
+                        >About</a
+                    >
+                    <a class="hover:text-white transition" href="#skills"
+                        >Skills</a
+                    >
+                    <a class="hover:text-white transition" href="#projects"
+                        >Projects</a
+                    >
+                    <a class="hover:text-white transition" href="#experience"
+                        >Experience</a
+                    >
+                    <a class="hover:text-white transition" href="#contact"
+                        >Contact</a
+                    >
+                </nav>
+
+                <div class="hidden lg:flex items-center gap-3">
+                    <a
+                        href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                        target="_blank"
+                        class="px-4 py-2 rounded-lg border border-border-custom text-text-secondary hover:text-white hover:border-border-light transition">
+                        LinkedIn
+                    </a>
+                    <a
+                        href="#contact"
+                        class="px-4 py-2 rounded-lg gradient-bg text-white font-medium hover:opacity-95 transition">
+                        Hire Me
+                    </a>
+                </div>
+
+                <button
+                    id="menuBtn"
+                    class="lg:hidden w-10 h-10 rounded-lg border border-border-custom flex items-center justify-center">
+                    ☰
+                </button>
+            </div>
+
+            <div
+                id="mobileMenu"
+                class="lg:hidden hidden border-t border-border-custom bg-bg-primary/95 backdrop-blur">
+                <div
+                    class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3 text-text-secondary">
+                    <a class="hover:text-white" href="#about">About</a>
+                    <a class="hover:text-white" href="#skills">Skills</a>
+                    <a class="hover:text-white" href="#projects">Projects</a>
+                    <a class="hover:text-white" href="#experience"
+                        >Experience</a
+                    >
+                    <a class="hover:text-white" href="#contact">Contact</a>
+                    <a
+                        href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                        target="_blank"
+                        class="mt-2 px-4 py-2 rounded-lg border border-border-custom text-center hover:text-white hover:border-border-light transition">
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <section id="home" class="pt-32 pb-16 md:pb-24 px-4 md:px-8">
+            <div
+                class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border-custom bg-bg-secondary text-sm text-text-secondary mb-6">
+                        <span
+                            class="w-2 h-2 rounded-full bg-accent-emerald"></span>
+                        Open to Work
+                    </div>
+
+                    <h1
+                        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-5">
+                        Hi, I’m <span class="gradient-text">Shelly Dhiman</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-text-secondary mb-4">
+                        Web Designer & Frontend Developer
+                    </p>
+
+                    <p class="text-text-muted max-w-xl mb-8">
+                        BCA graduate passionate about building responsive,
+                        user-friendly interfaces. Currently creating real-world
+                        projects at Renxo Technologies with skills in HTML, CSS,
+                        React, Tailwind & UI/UX.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a
+                            href="#projects"
+                            class="px-6 py-3 rounded-xl gradient-bg text-white font-semibold hover:opacity-95 hover:-translate-y-0.5 transition">
+                            View My Work
+                        </a>
+                        <a
+                            href="/resume.pdf"
+                            download
+                            class="px-6 py-3 rounded-xl border border-border-custom bg-bg-secondary text-text-primary hover:border-border-light hover:-translate-y-0.5 transition">
+                            Download CV
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 max-w-md">
+                        <div
+                            class="p-4 rounded-2xl bg-bg-secondary border border-border-custom">
+                            <div class="text-2xl font-extrabold gradient-text">
+                                7+
+                            </div>
+                            <div
+                                class="text-xs text-text-muted uppercase tracking-wider">
+                                Months
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 rounded-2xl bg-bg-secondary border border-border-custom">
+                            <div class="text-2xl font-extrabold gradient-text">
+                                6+
+                            </div>
+                            <div
+                                class="text-xs text-text-muted uppercase tracking-wider">
+                                Projects
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 rounded-2xl bg-bg-secondary border border-border-custom">
+                            <div class="text-2xl font-extrabold gradient-text">
+                                15+
+                            </div>
+                            <div
+                                class="text-xs text-text-muted uppercase tracking-wider">
+                                Skills
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-up delay-2 hidden lg:block">
+                    <div
+                        class="bg-bg-secondary rounded-3xl p-8 border border-border-custom shadow-soft">
+                        <div
+                            class="rounded-3xl bg-bg-tertiary border border-border-custom flex items-center justify-center aspect-square text-7xl">
+                            <img
+                                src="images/profile.jpeg"
+                                alt=""
+                                class="rounded-3xl object-cover h-full w-full object-top" />
+                        </div>
+                        <div class="mt-6">
+                            <div class="text-sm text-text-muted font-fira">
+                                images Currently
+                            </div>
+                            <div class="text-lg font-semibold">
+                                Web Designer/Frontend developer Intern
+                            </div>
+                            <div class="text-sm text-text-secondary">
+                                Renxo Technologies • Karnal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="px-4 md:px-8 py-12 md:py-16">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
+                <div class="fade-up">
+                    <div
+                        class="inline-block font-fira text-xs text-accent uppercase tracking-widest mb-3">
+                        About
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">
+                        About me
+                    </h2>
+                    <p class="text-text-secondary mb-4">
+                        I'm a BCA graduate with hands-on experience in frontend
+                        development and web design from my internship at Renxo
+                        Technologies. I specialize in responsive UI, clean
+                        layouts, and building interfaces that feel smooth and
+                        intuitive.
+                    </p>
+                    <p class="text-text-secondary">
+                        With a strong foundation in HTML, CSS, JavaScript, and
+                        React—plus design skills in Figma—I bridge the gap
+                        between design and development and turn ideas into
+                        functional products.
+                    </p>
+
+                    <div class="mt-8 grid sm:grid-cols-2 gap-4">
+                        <div
+                            class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light transition">
+                            <div class="text-sm font-semibold mb-1">
+                                Quick Learner
+                            </div>
+                            <div class="text-sm text-text-muted">
+                                Adaptable & always improving
+                            </div>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light transition">
+                            <div class="text-sm font-semibold mb-1">
+                                Problem Solver
+                            </div>
+                            <div class="text-sm text-text-muted">
+                                Creative, user-first solutions
+                            </div>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light transition">
+                            <div class="text-sm font-semibold mb-1">
+                                Team Player
+                            </div>
+                            <div class="text-sm text-text-muted">
+                                Strong collaboration & ownership
+                            </div>
+                        </div>
+                        <div
+                            class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light transition">
+                            <div class="text-sm font-semibold mb-1">
+                                Detail Oriented
+                            </div>
+                            <div class="text-sm text-text-muted">
+                                Pixel-perfect execution
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-up delay-1">
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 md:p-8">
+                        <h3 class="text-lg font-semibold mb-4">Details</h3>
+                        <div class="grid gap-3">
+                            <div
+                                class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-bg-primary border border-border-custom">
+                                <span class="text-text-muted text-sm"
+                                    >Location</span
+                                >
+                                <span class="text-sm font-medium"
+                                    >Karnal, Haryana, India</span
+                                >
+                            </div>
+                            <div
+                                class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-bg-primary border border-border-custom">
+                                <span class="text-text-muted text-sm"
+                                    >Email</span
+                                >
+                                <a
+                                    class="text-sm font-medium text-accent-light hover:underline"
+                                    href="mailto:shellydhiman020@gmail.com"
+                                    >shellydhiman020@gmail.com</a
+                                >
+                            </div>
+                            <div
+                                class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-bg-primary border border-border-custom">
+                                <span class="text-text-muted text-sm"
+                                    >Phone</span
+                                >
+                                <a
+                                    class="text-sm font-medium text-accent-light hover:underline"
+                                    href="tel:+918168870312"
+                                    >+91 8168870312</a
+                                >
+                            </div>
+                            <div
+                                class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-bg-primary border border-border-custom">
+                                <span class="text-text-muted text-sm"
+                                    >LinkedIn</span
+                                >
+                                <a
+                                    class="text-sm font-medium text-accent-light hover:underline"
+                                    target="_blank"
+                                    href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                    >linkedin.com/in/shelly-dhiman</a
+                                >
+                            </div>
+                            <div
+                                class="flex items-center justify-between gap-4 p-4 rounded-2xl bg-bg-primary border border-border-custom">
+                                <span class="text-text-muted text-sm"
+                                    >Education</span
+                                >
+                                <span class="text-sm font-medium"
+                                    >BCA (2022–2025) • Completed</span
+                                >
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 p-5 rounded-2xl border border-border-custom bg-bg-primary">
+                            <div class="text-sm text-text-muted mb-2">
+                                Focus
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1.5 rounded-full text-xs border border-border-custom bg-bg-secondary text-text-secondary"
+                                    >Responsive UI</span
+                                >
+                                <span
+                                    class="px-3 py-1.5 rounded-full text-xs border border-border-custom bg-bg-secondary text-text-secondary"
+                                    >React</span
+                                >
+                                <span
+                                    class="px-3 py-1.5 rounded-full text-xs border border-border-custom bg-bg-secondary text-text-secondary"
+                                    >Tailwind</span
+                                >
+                                <span
+                                    class="px-3 py-1.5 rounded-full text-xs border border-border-custom bg-bg-secondary text-text-secondary"
+                                    >Figma</span
+                                >
+                                <span
+                                    class="px-3 py-1.5 rounded-full text-xs border border-border-custom bg-bg-secondary text-text-secondary"
+                                    >UI/UX</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="px-4 md:px-8 py-14 md:py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-10">
+                    <div
+                        class="inline-block font-fira text-xs text-accent uppercase tracking-widest mb-3">
+                        Skills
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">
+                        Skills & Technologies
+                    </h2>
+                    <p class="text-text-muted max-w-2xl mx-auto">
+                        A focused toolkit for building clean, modern web
+                        interfaces and user experiences.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 hover:border-border-light transition">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-bg-tertiary border border-border-custom flex items-center justify-center">
+                                💻
+                            </div>
+                            <h3 class="font-semibold">Frontend</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >HTML5</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >CSS3</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >JavaScript</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >React</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Tailwind</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Bootstrap</span
+                            >
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 hover:border-border-light transition">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-bg-tertiary border border-border-custom flex items-center justify-center">
+                                🎨
+                            </div>
+                            <h3 class="font-semibold">UI/UX</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Figma</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Wireframing</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Prototyping</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Canva</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Wix</span
+                            >
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 hover:border-border-light transition">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-bg-tertiary border border-border-custom flex items-center justify-center">
+                                🔧
+                            </div>
+                            <h3 class="font-semibold">Tools</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >VS Code</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Git</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >Chrome DevTools</span
+                            >
+                            <span
+                                class="px-3 py-1.5 text-sm rounded-lg bg-bg-tertiary border border-border-custom text-text-secondary"
+                                >MS Office</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            id="projects"
+            class="px-4 md:px-8 py-14 md:py-20 bg-bg-secondary border-y border-border-custom">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-10">
+                    <div
+                        class="inline-block font-fira text-xs text-accent uppercase tracking-widest mb-3">
+                        Projects
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">
+                        Featured Work
+                    </h2>
+                    <p class="text-text-muted max-w-2xl mx-auto">
+                        A selection of my recent development and design
+                        projects.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/insta.png"
+                                alt="Instagram Clone"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                Web Development
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                Instagram Clone
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Responsive clone with feed layout, UI
+                                components, and profile screens.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >React</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Tailwind</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >JavaScript</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/amazon.png"
+                                alt="Amazon Clone"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                Web Development
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                Amazon Clone
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Product listings UI, responsive layout, and
+                                shopping flow screens.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >React</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Tailwind</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >JavaScript</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/movie.png"
+                                alt="Movie Website"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                Web Development
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                Movie Website
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Search and browsing UI with detailed movie pages
+                                and clean UX.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >HTML</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >CSS</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >JS</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/app.png"
+                                alt="E-commerce App Design"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                UI/UX Design
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                E-commerce App Design
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Modern mobile app UI kit with clean components
+                                and product screens.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Figma</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >UI</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Prototype</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/dashboard.jpg"
+                                alt="Dashboard Design"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                UI/UX Design
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                Dashboard Design
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Analytics dashboard layout with modern spacing
+                                and strong hierarchy.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Figma</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Dashboard</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-primary border border-border-custom rounded-3xl overflow-hidden hover:border-border-light hover:-translate-y-1 transition">
+                        <div
+                            class="h-44 bg-bg-tertiary border-b border-border-custom flex items-center justify-center">
+                            <img
+                                src="images/brand.jpg"
+                                alt="Skincare Ad Poster"
+                                class="h-full object-contain p-4" />
+                        </div>
+                        <div class="p-6">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                Graphic Design
+                            </div>
+                            <h3 class="text-lg font-semibold mt-2">
+                                Skincare Ad Poster
+                            </h3>
+                            <p class="text-sm text-text-muted mt-2 mb-4">
+                                Professional ad poster with clear visual
+                                hierarchy and brand style.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Figma</span
+                                >
+                                <span
+                                    class="px-2.5 py-1 text-xs rounded-lg bg-bg-secondary border border-border-custom text-text-secondary"
+                                    >Branding</span
+                                >
+                            </div>
+                            <a
+                                target="_blank"
+                                href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                                class="text-sm text-accent-light hover:underline">
+                                View →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="px-4 md:px-8 py-14 md:py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-10">
+                    <div
+                        class="inline-block font-fira text-xs text-accent uppercase tracking-widest mb-3">
+                        Experience
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3">
+                        Experience & Education
+                    </h2>
+                    <p class="text-text-muted max-w-2xl mx-auto">
+                        My internship experience and academic background.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-6">
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 md:p-8">
+                        <h3 class="font-semibold mb-5">Work Experience</h3>
+
+                        <div
+                            class="p-5 rounded-2xl bg-bg-primary border border-border-custom mb-4">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                June 2024 — Present
+                            </div>
+                            <div class="text-lg font-semibold mt-2">
+                                Web Designer Intern
+                            </div>
+                            <div class="text-sm text-text-secondary mb-4">
+                                Renxo Technologies Pvt Ltd, Karnal
+                            </div>
+                            <ul
+                                class="space-y-2 text-sm text-text-muted list-disc pl-5">
+                                <li>
+                                    Worked on live client projects supporting
+                                    design and development workflows.
+                                </li>
+                                <li>
+                                    Designed app UI in Figma, created reusable
+                                    components, refined layouts.
+                                </li>
+                                <li>
+                                    Performed QA testing, reported issues,
+                                    helped improve UX quality.
+                                </li>
+                                <li>
+                                    Created posters, ID cards, and promotional
+                                    branding materials.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div
+                            class="p-5 rounded-2xl bg-bg-primary border border-border-custom">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                2022 — 2024
+                            </div>
+                            <div class="text-lg font-semibold mt-2">
+                                NSS Volunteer
+                            </div>
+                            <div class="text-sm text-text-secondary mb-4">
+                                National Service Scheme
+                            </div>
+                            <ul
+                                class="space-y-2 text-sm text-text-muted list-disc pl-5">
+                                <li>
+                                    Participated in community service and
+                                    awareness programs.
+                                </li>
+                                <li>
+                                    Developed leadership and teamwork through
+                                    group initiatives.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-bg-secondary border border-border-custom rounded-3xl p-6 md:p-8">
+                        <h3 class="font-semibold mb-5">Education</h3>
+
+                        <div
+                            class="p-5 rounded-2xl bg-bg-primary border border-border-custom mb-4">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                2022 — 2025
+                            </div>
+                            <div class="text-lg font-semibold mt-2">
+                                Bachelor of Computer Applications (BCA)
+                            </div>
+                            <div class="text-sm text-text-secondary mb-4">
+                                Completed
+                            </div>
+                            <ul
+                                class="space-y-2 text-sm text-text-muted list-disc pl-5">
+                                <li>
+                                    Studied programming fundamentals and
+                                    computer science concepts.
+                                </li>
+                                <li>
+                                    Built projects and strengthened web
+                                    development skills.
+                                </li>
+                                <li>
+                                    Focused on practical frontend development.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div
+                            class="p-5 rounded-2xl bg-bg-primary border border-border-custom">
+                            <div
+                                class="text-xs font-fira text-accent uppercase tracking-widest">
+                                2021 — 2022
+                            </div>
+                            <div class="text-lg font-semibold mt-2">
+                                Senior Secondary (12th)
+                            </div>
+                            <div class="text-sm text-text-secondary mb-4">
+                                Gov Modal Sanskriti Sr Sec School
+                            </div>
+                            <ul
+                                class="space-y-2 text-sm text-text-muted list-disc pl-5">
+                                <li>Completed higher secondary education.</li>
+                                <li>Built a strong academic foundation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="px-4 md:px-8 py-14 md:py-20">
+            <div class="max-w-3xl mx-auto text-center">
+                <div
+                    class="inline-block font-fira text-xs text-accent uppercase tracking-widest mb-3">
+                    Contact
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Let’s work together
+                </h2>
+                <p class="text-text-muted mb-10">
+                    I’m open to new opportunities. If you have a project in mind
+                    or want to connect, feel free to reach out.
+                </p>
+
+                <div class="grid sm:grid-cols-3 gap-4 mb-10">
+                    <a
+                        href="mailto:shellydhiman020@gmail.com"
+                        class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light hover:-translate-y-1 transition">
+                        <div class="text-sm text-text-muted">Email</div>
+                        <div class="text-sm font-semibold mt-1">
+                            shellydhiman020@gmail.com
+                        </div>
+                    </a>
+                    <a
+                        href="tel:+918168870312"
+                        class="p-5 rounded-2xl bg-bg-secondary border border-border-custom hover:border-border-light hover:-translate-y-1 transition">
+                        <div class="text-sm text-text-muted">Phone</div>
+                        <div class="text-sm font-semibold mt-1">
+                            +91 8168870312
+                        </div>
+                    </a>
+                    <div
+                        class="p-5 rounded-2xl bg-bg-secondary border border-border-custom">
+                        <div class="text-sm text-text-muted">Location</div>
+                        <div class="text-sm font-semibold mt-1">
+                            Karnal, Haryana
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-3">
+                    <a
+                        target="_blank"
+                        href="https://github.com/ShellyDhimanVishwakarma"
+                        class="px-4 py-2 rounded-xl bg-bg-secondary border border-border-custom text-text-secondary hover:text-white hover:border-border-light transition">
+                        GitHub
+                    </a>
+                    <a
+                        target="_blank"
+                        href="https://www.linkedin.com/in/shelly-dhiman-a000b4293/"
+                        class="px-4 py-2 rounded-xl bg-bg-secondary border border-border-custom text-text-secondary hover:text-white hover:border-border-light transition">
+                        LinkedIn
+                    </a>
+                    <a
+                        href="#home"
+                        class="px-4 py-2 rounded-xl gradient-bg text-white font-medium hover:opacity-95 transition">
+                        Back to top
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer
+            class="border-t border-border-custom py-8 text-center text-sm text-text-muted">
+            © 2025 Shelly Dhiman. Designed & Built with passion.
+        </footer>
+
+        <script>
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            mobileMenu.querySelectorAll("a").forEach((a) => {
+                a.addEventListener("click", () =>
+                    mobileMenu.classList.add("hidden")
+                );
+            });
+        </script>
+    </body>
+</html>
